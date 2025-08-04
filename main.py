@@ -1,4 +1,3 @@
-import os
 import random
 from telegram import (
     Update, InlineKeyboardButton, InlineKeyboardMarkup,
@@ -9,7 +8,7 @@ from telegram.ext import (
     MessageHandler, ContextTypes, filters
 )
 
-BOT_TOKEN = os.getenv("8231786450:AAFa-9wPFPlVkMXocPLbBska69-PnvKuID0")
+BOT_TOKEN = '8231786450:AAFa-9wPFPlVkMXocPLbBska69-PnvKuID0'
 ADMIN_ID = 7074284845
 CHANNEL_ID = -1002771722016
 
@@ -105,6 +104,8 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await context.bot.send_message(chat_id=CHANNEL_ID, text=msg)
         except Exception as e:
             print(f"Xatolik yuborishda: {e}")
+
+
     else:
         await get_name(update, context)
 
@@ -138,6 +139,7 @@ async def forward_everything(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
 # SETUP
 app = ApplicationBuilder().token(BOT_TOKEN).build()
+
 app.add_handler(CommandHandler("start", start))
 app.add_handler(CallbackQueryHandler(handle_option, pattern="^(tourpacks|visa|ticket|back)$"))
 app.add_handler(CallbackQueryHandler(tour_selected))
